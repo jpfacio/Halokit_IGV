@@ -48,5 +48,5 @@ temp_dir=$(mktemp -d)
 echo ">Sequence" > "$temp_dir/sequence.fa"
 echo "$sequence" >> "$temp_dir/sequence.fa" 
 
-RNAfold -p "$temp_dir/sequence.fa"
+sec_strc=$(RNAfold -p "$temp_dir/sequence.fa")
 
