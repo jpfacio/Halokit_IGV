@@ -49,4 +49,10 @@ echo ">Sequence" > "$temp_dir/sequence.fa"
 echo "$sequence" >> "$temp_dir/sequence.fa" 
 
 sec_strc=$(RNAfold -p "$temp_dir/sequence.fa")
+echo "$sec_strc" > "$temp_dir/secstrc.txt"
+fold_result="$temp_dir/secstrc.txt"
+fold_result=$(head -n 3 "$fold_result" | tail -n 1)
+echo "$fold_result"
+length_seq=${#sequence}
+echo "${fold_result:0:length_seq}"
 
