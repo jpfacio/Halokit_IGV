@@ -60,8 +60,11 @@ length_seq=${#sequence}
 fold_result="${fold_result:0:length_seq}"
 
 #one lining the fasta entries for easier comparison 
-awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n}' Hsalinarum.fa > Hsalonliner.fa
+awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n}' Hsalinarum.fa > "$temp_dir/Hsalonliner.fa"
 
-input_coord=$(grep -n -B 1 $sequence Hsalonliner.fa | awk -F ':' '{ print $2} ')
-echo "$input_coord"
+#take the sequence and everything before to access the total position of the last nt and acessing the first nt after it
+input_coord=$(grep -o -B 1 "^.*${sequence}" "$temp_dir/Hsalonliner.fa")
+initial_position=$(expr $(expr ${#input_coord} - ${#sequence}) + 1)
+
+
 
