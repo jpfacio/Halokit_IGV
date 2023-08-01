@@ -44,13 +44,13 @@ Input a sequence: '
 #input sequence
 read sequence 
 
-#make temp directory and story the sequence on a fasta file
+#make temp directory and store the sequence on a fasta file
 temp_dir=$(mktemp -d)
 echo ">Sequence" > "$temp_dir/sequence.fa"
 echo "$sequence" >> "$temp_dir/sequence.fa" 
 
 #applying RNAfold to the input sequence fasta file and sending the output to a temp text file
-sec_strc=$(RNAfold -p --salt=4.0 "$temp_dir/sequence.fa")
+sec_strc=$(RNAfold -p --salt=4.0  "$temp_dir/sequence.fa")
 echo "$sec_strc" > "$temp_dir/secstrc.txt"
 fold_result="$temp_dir/secstrc.txt"
 
@@ -58,19 +58,16 @@ fold_result="$temp_dir/secstrc.txt"
 fold_result=$(head -n 3 "$fold_result" | tail -n 1)
 length_seq=${#sequence}
 fold_result="${fold_result:0:length_seq}"
-echo $fold_result
 
 #one lining the fasta entries for easier comparison 
 awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n}' Hsalinarum.fa > "$temp_dir/Hsalonliner.fa"
 
 #take the sequence and everything before to access the total position of the last nt and acessing the first nt after it
 input_coord=$(grep -o -B 1 "^.*${sequence}" "$temp_dir/Hsalonliner.fa")
-echo $input_coord
 initial_position=$(expr ${#input_coord} - ${#sequence})
-echo $initial_position
 final_position=${#input_coord}
-echo $final_position
 
+#function to convert matching parenthesis in the dot bracket notation into open-close index pairs
 pairs() {
   local s=$* i open=() pairs=()
   for (( i=0; i <${#s}; ++i )); do
@@ -81,7 +78,7 @@ pairs() {
         printf >&2 'Error: unmatched ")" at position %s\n' "$i"
         return 1
       fi
-      pairs=("$((${open[0]} + $initial_position + 1))-$((i + $initial_position + 1))" "${pairs[@]}")
+      pairs=("$((${open[0]} + $initial_position + 1)) $((i + $initial_position + 1))" "${pairs[@]}")
       open=("${open[@]:1}")
     fi
   done
@@ -92,8 +89,31 @@ pairs() {
   printf '%s\n' "${pairs[@]}"
 }
 
-pairs "$fold_result" > "$temp_dir/pairs.txt"
-    
+#sorting and tabbing the function result
+pairs "$fold_result" | sed 's/ /  /' > "$temp_dir/pairs_tab.txt"
+sort -n -k1,1 "$temp_dir/pairs_tab.txt" > "pairs_sorted.txt"
+
+#Arranging the Halo chromossomes
+chroms=( "NC_002607.1" "NC_001869.1" "NC_002608.1" )
+
+#Writing the bed file
+fasta_first_line=$(head -n 1 "$temp_dir/Hsalonliner.fa")
+
+for i in "${chroms[@]}"; do
+  if echo "$fasta_first_line" | grep -q "$i"; then
+    while IFS=$'\t' read -r start end; do
+      echo -e "$i\t$start\t$end" >> "$temp_dir/chrom_added.txt"
+    done < "pairs_sorted.txt"
+    mv "$temp_dir/chrom_added.txt" "pairs_sorted.txt"
+  fi
+done
+        
+header="track graphType=arc"
+echo "$header" > "$temp_dir/header.txt"
+cat "pairs_sorted.txt" >> "$temp_dir/header.txt"
+mv "$temp_dir/header.txt" "pairs_sorted.bed"
+
+
 
 
 
