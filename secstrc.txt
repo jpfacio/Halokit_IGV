@@ -1,6 +1,0 @@
->Sequence
-CGACGUAGAUGCUAGCUGACUCGAUGC
-(((.((((.......)).))))).... ( -1.30)
-(((.((((.......))}.}))).... [ -2.33]
-(((.(.((.......))..)))).... {  1.40 d=3.35}
- frequency of mfe structure in ensemble 0.187028; ensemble diversity 4.98  
