@@ -50,7 +50,7 @@ echo ">Sequence" > "$temp_dir/sequence.fa"
 echo "$sequence" >> "$temp_dir/sequence.fa" 
 
 #applying RNAfold to the input sequence fasta file and sending the output to a temp text file
-sec_strc=$(RNAfold -p --salt=4.0  "$temp_dir/sequence.fa")
+sec_strc=$(RNAfold -p --salt=2.6 "$temp_dir/sequence.fa")
 echo "$sec_strc" > "$temp_dir/secstrc.txt"
 fold_result="$temp_dir/secstrc.txt"
 
@@ -58,6 +58,7 @@ fold_result="$temp_dir/secstrc.txt"
 fold_result=$(head -n 3 "$fold_result" | tail -n 1)
 length_seq=${#sequence}
 fold_result="${fold_result:0:length_seq}"
+echo $fold_result
 
 #one lining the fasta entries for easier comparison 
 awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n}' Hsalinarum.fa > "$temp_dir/Hsalonliner.fa"
@@ -90,7 +91,7 @@ pairs() {
 }
 
 #sorting and tabbing the function result
-pairs "$fold_result" | sed 's/ /  /' > "$temp_dir/pairs_tab.txt"
+pairs "$fold_result" | sed 's/ /\t/' > "$temp_dir/pairs_tab.txt"
 sort -n -k1,1 "$temp_dir/pairs_tab.txt" > "pairs_sorted.txt"
 
 #Arranging the Halo chromossomes
