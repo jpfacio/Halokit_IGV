@@ -114,6 +114,7 @@ echo "$header" > "$temp_dir/header.txt"
 cat "$temp_dir/pairs_sorted.txt" >> "$temp_dir/header.txt"
 mv "$temp_dir/header.txt" "$pairs_sorted.bed"
 
+#Writing the xml file to save a session
 genome_path="~/Halokit_IGV/Hsalinarum.fa"
 
 if echo "$fasta_first_line" | grep -q "NC_002607.1"; then
@@ -125,7 +126,9 @@ if echo "$fasta_first_line" | grep -q "NC_002608.1"; then
 
 path="~/Halokit_IGV/pairs_sorted.bed"
 
-type="bedgraph"
+xml_content="<Session genome="$genome_path" locus="$locus" version="8">
+    <Resources>
+        <Resource path="$path" type="bed"/>
     
     
 
