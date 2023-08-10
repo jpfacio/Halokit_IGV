@@ -105,16 +105,29 @@ for i in "${chroms[@]}"; do
     while IFS=$'\t' read -r start end; do
       echo -e "$i\t$start\t$end" >> "$temp_dir/chrom_added.txt"
     done < "pairs_sorted.txt"
-    mv "$temp_dir/chrom_added.txt" "pairs_sorted.txt"
+    mv "$temp_dir/chrom_added.txt" "$temp_dir/pairs_sorted.txt"
   fi
 done
         
 header="track graphType=arc"
 echo "$header" > "$temp_dir/header.txt"
-cat "pairs_sorted.txt" >> "$temp_dir/header.txt"
-mv "$temp_dir/header.txt" "pairs_sorted.bed"
+cat "$temp_dir/pairs_sorted.txt" >> "$temp_dir/header.txt"
+mv "$temp_dir/header.txt" "$pairs_sorted.bed"
 
+genome_path="~/Halokit_IGV/Hsalinarum.fa"
 
+if echo "$fasta_first_line" | grep -q "NC_002607.1"; then
+    locus="NC_002607.1:0-2014239"
+if echo "$fasta_first_line" | grep -q "NC_001869.1"; then
+    locus="NC_001869.1:0-191346"
+if echo "$fasta_first_line" | grep -q "NC_002608.1"; then
+    locus="NC_002608.1:0-365425"
+
+path="~/Halokit_IGV/pairs_sorted.bed"
+
+type="bedgraph"
+    
+    
 
 
 
