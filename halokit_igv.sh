@@ -92,7 +92,7 @@ pairs() {
 
 #sorting and tabbing the function result
 pairs "$fold_result" | sed 's/ /\t/' > "$temp_dir/pairs_tab.txt"
-sort -n -k1,1 "$temp_dir/pairs_tab.txt" > "pairs_sorted.txt"
+sort -n -k1,1 "$temp_dir/pairs_tab.txt" > "$temp_dir/pairs_sorted.txt"
 
 #Arranging the Halo chromossomes
 chroms=( "NC_002607.1" "NC_001869.1" "NC_002608.1" )
@@ -104,7 +104,7 @@ for i in "${chroms[@]}"; do
   if echo "$fasta_first_line" | grep -q "$i"; then
     while IFS=$'\t' read -r start end; do
       echo -e "$i\t$start\t$end" >> "$temp_dir/chrom_added.txt"
-    done < "pairs_sorted.txt"
+    done < "$temp_dir/pairs_sorted.txt"
     mv "$temp_dir/chrom_added.txt" "$temp_dir/pairs_sorted.txt"
   fi
 done
@@ -112,23 +112,43 @@ done
 header="track graphType=arc"
 echo "$header" > "$temp_dir/header.txt"
 cat "$temp_dir/pairs_sorted.txt" >> "$temp_dir/header.txt"
-mv "$temp_dir/header.txt" "$pairs_sorted.bed"
+mv "$temp_dir/header.txt" pairs_sorted.bed
 
 #Writing the xml file to save a session
 genome_path="~/Halokit_IGV/Hsalinarum.fa"
 
 if echo "$fasta_first_line" | grep -q "NC_002607.1"; then
     locus="NC_002607.1:0-2014239"
+fi
 if echo "$fasta_first_line" | grep -q "NC_001869.1"; then
     locus="NC_001869.1:0-191346"
+fi
 if echo "$fasta_first_line" | grep -q "NC_002608.1"; then
     locus="NC_002608.1:0-365425"
+fi
 
 path="~/Halokit_IGV/pairs_sorted.bed"
 
-xml_content="<Session genome="$genome_path" locus="$locus" version="8">
+xml_content='<Session genome="'$genome_path'" locus="'$locus'" version="8">
     <Resources>
-        <Resource path="$path" type="bed"/>
+        <Resource path="'$path'" type="bed"/>
+    </Resources>
+    <Panel height="794" name="FeaturePanel" width="1829">
+        <Track attributeKey="'$path'" clazz="org.broad.igv.Track.FeatureTrack" colorScale="ContinuousColorScale;0.0;17.0;255,255,255;0,0,178" fontSize="10" groupByStrand="false" id="/home/jpfacio/Halokit_IGV/pairs_sorted.bed"
+        name="pairs_sorted.bed" visible="true"/>
+        <Track attributeKey="Reference sequence" clazz="org.broad.igv.track.SequenceTrack" fontSize="10" id="Reference sequence" name="Reference sequence" sequenceTranslationStrandValue="POSITIVE" shouldShowTranslation="false" visible="true"/>
+    </Panel>
+    <PanelLayout dividerFractions="0.007453416149068323"/>
+    <HiddenAttributes>
+        <Attribute name="DATA FILE"/>
+        <Attribute name="DATA TYPE"/>
+        <Attribute name="NAME"/>
+    </HiddenAttributes>
+</Session>'
+
+echo "$xml_content" > output.xml
+
+
     
     
 
