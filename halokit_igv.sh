@@ -1,21 +1,3 @@
-if command -v RNAfold > /dev/null 2>&1; then
-    :
-else 
-    echo "The ViennaRNA package is required to use Halokit, to download it, follow these instructions: https://www.tbi.univie.ac.at/RNA/index.html#download"
-fi
-
-if command -v bedtools > /dev/null 2>&1; then
-    :
-else
-    echo "Bedtools is required to use Halokit, to download it, follow these instructions: https://bedtools.readthedocs.io/en/latest/content/installation.html"
-fi
-
-if find ~ -name "igv.sh" > /dev/null 2>&1; then
-    :
-else 
-    echo "IGV is required to use Halokit, to download it, follow these instructions: https://software.broadinstitute.org/software/igv/"
-fi
-
 
 echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⢠⣶⣶⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠟⠛⢿⣶⡄⠀⢀⣀⣤⣤⣦⣤⡀⠀⠀⠀⠀⠀
@@ -50,7 +32,7 @@ echo ">Sequence" > "$temp_dir/sequence.fa"
 echo "$sequence" >> "$temp_dir/sequence.fa" 
 
 #applying RNAfold to the input sequence fasta file and sending the output to a temp text file
-sec_strc=$(RNAfold -p --salt=2.6 "$temp_dir/sequence.fa")
+sec_strc=$(RNAfold -p --salt=4.0 "$temp_dir/sequence.fa")
 echo "$sec_strc" > "$temp_dir/secstrc.txt"
 fold_result="$temp_dir/secstrc.txt"
 
@@ -129,24 +111,7 @@ fi
 
 path="~/Halokit_IGV/pairs_sorted.bed"
 
-xml_content='<Session genome="'$genome_path'" locus="'$locus'" version="8">
-    <Resources>
-        <Resource path="'$path'" type="bed"/>
-    </Resources>
-    <Panel height="794" name="FeaturePanel" width="1829">
-        <Track attributeKey="'$path'" clazz="org.broad.igv.Track.FeatureTrack" colorScale="ContinuousColorScale;0.0;17.0;255,255,255;0,0,178" fontSize="10" groupByStrand="false" id="/home/jpfacio/Halokit_IGV/pairs_sorted.bed"
-        name="pairs_sorted.bed" visible="true"/>
-        <Track attributeKey="Reference sequence" clazz="org.broad.igv.track.SequenceTrack" fontSize="10" id="Reference sequence" name="Reference sequence" sequenceTranslationStrandValue="POSITIVE" shouldShowTranslation="false" visible="true"/>
-    </Panel>
-    <PanelLayout dividerFractions="0.007453416149068323"/>
-    <HiddenAttributes>
-        <Attribute name="DATA FILE"/>
-        <Attribute name="DATA TYPE"/>
-        <Attribute name="NAME"/>
-    </HiddenAttributes>
-</Session>'
-
-echo "$xml_content" > output.xml
+igv pairs_sorted.bed
 
 
     
