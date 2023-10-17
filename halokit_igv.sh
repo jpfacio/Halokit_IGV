@@ -1,58 +1,73 @@
+#!/bin/bash
 
-echo '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⢠⣶⣶⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠟⠛⢿⣶⡄⠀⢀⣀⣤⣤⣦⣤⡀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⢠⣿⠋⠀⠀⠈⠙⠻⢿⣶⣶⣶⣶⣶⣶⣶⣿⠟⠀⠀⠀⠀⠹⣿⡿⠟⠋⠉⠁⠈⢻⣷⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣼⡧⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⣾⡏⠀⠀⢠⣾⢶⣶⣽⣷⣄⡀⠀⠀⠀⠈⣿⡆⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⢸⣧⣾⠟⠉⠉⠙⢿⣿⠿⠿⠿⣿⣇⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⢸⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣷⣄⣀⣠⣼⣿⠀⠀⠀⠀⣸⣿⣦⡀⠀⠈⣿⡄⠀⠀⠀
-⠀⠀⠀⠀⠀⢠⣾⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠻⣷⣤⣤⣶⣿⣧⣿⠃⠀⣰⣿⠁⠀⠀⠀
-⠀⠀⠀⠀⠀⣾⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠹⣿⣀⠀⠀⣀⣴⣿⣧⠀⠀⠀⠀
-⠀⠀⠀⠀⢸⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⠿⠿⠛⠉⢸⣿⠀⠀⠀⠀
-⢀⣠⣤⣤⣼⣿⣤⣄⠀⠀⠀⡶⠟⠻⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣶⡄⠀⠀⠀⠀⢀⣀⣿⣄⣀⠀⠀
-⠀⠉⠉⠉⢹⣿⣩⣿⠿⠿⣶⡄⠀⠀⠀⠀⠀⠀⠀⢀⣤⠶⣤⡀⠀⠀⠀⠀⠀⠿⡿⠃⠀⠀⠀⠘⠛⠛⣿⠋⠉⠙⠃
-⠀⠀⠀⣤⣼⣿⣿⡇⠀⠀⠸⣿⠀⠀⠀⠀⠀⠀⠀⠘⠿⣤⡼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣼⣿⣀⠀⠀⠀
-⠀⠀⣾⡏⠀⠈⠙⢧⠀⠀⠀⢿⣧⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠟⠙⠛⠓⠀
-⠀⠀⠹⣷⡀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠻⣷⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣶⣿⣯⡀⠀⠀⠀⠀
-⠀⠀⠀⠈⠻⣷⣄⠀⠀⠀⢀⣴⠿⠿⠗⠈⢻⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⠟⠋⠉⠛⠷⠄⠀⠀
-⠀⠀⠀⠀⠀⢸⡏⠀⠀⠀⢿⣇⠀⢀⣠⡄⢘⣿⣶⣶⣤⣤⣤⣤⣀⣤⣤⣤⣤⣶⣶⡿⠿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠘⣿⡄⠀⠀⠈⠛⠛⠛⠋⠁⣼⡟⠈⠻⣿⣿⣿⣿⡿⠛⠛⢿⣿⣿⣿⣡⣾⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠙⢿⣦⣄⣀⣀⣀⣀⣴⣾⣿⡁⠀⠀⠀⡉⣉⠁⠀⠀⣠⣾⠟⠉⠉⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠛⠛⠛⠉⠀⠹⣿⣶⣤⣤⣷⣿⣧⣴⣾⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠻⢦⣭⡽⣯⣡⡴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+##################################################################################################
+##################################################################################################
+####                                 DEFINING FUNCTIONS                                       ####
+##################################################################################################
+##################################################################################################
 
-Welcome to Halokit_IGV version pre-Alpha, the Halobacterium salinarum toolkit for genomic visualization
-Input a sequence: '
+help() {
 
-#input sequence
-read sequence 
+  ### Will display the software docs. ###
+  echo "Unavailable at the moment"
+}
 
-#make temp directory and store the sequence on a fasta file
-temp_dir=$(mktemp -d)
-echo ">Sequence" > "$temp_dir/sequence.fa"
-echo "$sequence" >> "$temp_dir/sequence.fa" 
+one_liner() {
+  ### One lining user input fasta entries, will be used in an imperative option. ###
 
-#applying RNAfold to the input sequence fasta file and sending the output to a temp text file
-sec_strc=$(RNAfold -p --salt=4.0 "$temp_dir/sequence.fa")
-echo "$sec_strc" > "$temp_dir/secstrc.txt"
-fold_result="$temp_dir/secstrc.txt"
+  local s=$*
 
-#taking only the third line which corresponds to the simplest folding result and dropping out the MFE value (will use it later)
-fold_result=$(head -n 3 "$fold_result" | tail -n 1)
-length_seq=${#sequence}
-fold_result="${fold_result:0:length_seq}"
-echo $fold_result
+  local onelined_fasta=$(awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n }' <<< "$s")
 
-#one lining the fasta entries for easier comparison 
-awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { printf "%s", n}' Hsalinarum.fa > "$temp_dir/Hsalonliner.fa"
+  echo "$onelined_fasta"
+}
 
-#take the sequence and everything before to access the total position of the last nt and acessing the first nt after it
-input_coord=$(grep -o -B 1 "^.*${sequence}" "$temp_dir/Hsalonliner.fa")
-initial_position=$(expr ${#input_coord} - ${#sequence})
-final_position=${#input_coord}
+rna_fold() {
+  ### Applies the RNAfold program to the input sequence. Receives the target sequence and the salt concentration. ###
 
-#function to convert matching parenthesis in the dot bracket notation into open-close index pairs
+  local sequence="$1" salt="$2"
+  local temp_dir
+
+  temp_dir=$(mktemp -d)
+
+  echo ">Sequence" > "$temp_dir/sequence.fa"
+  echo "$sequence" >> "$temp_dir/sequence.fa"
+
+  if [ -z "$salt" ]; then
+    sec_strc=$(RNAfold -p < "$temp_dir/sequence.fa")
+  else
+    sec_strc=$(RNAfold -p --salt="$salt" < "$temp_dir/sequence.fa")
+  fi
+
+  echo "$sec_strc" > "$temp_dir/secstrc.txt"
+ 
+  local fold_result=$(head -n 3 "$temp_dir/secstrc.txt" | tail -n 1)
+
+  local length_seq=${#sequence}
+  fold_result="${fold_result:0:length_seq}"
+  echo "$fold_result"
+
+  rm -r "$temp_dir"
+}
+
+input_coord() {
+
+  ### Take the sequence and everything before to access the total position of the last nt and acessing the first nt after it. ###
+
+  local sequence="$1"
+  local fasta_file="$2"
+
+  input_coord=$(grep -o -B 1 "^.*${sequence}" "${fasta_file}")
+  initial_position=$(expr ${#input_coord} - ${#sequence})
+  final_position=${#input_coord}
+}
+
 pairs() {
+
+  ### Function to convert matching parenthesis in the dot bracket notation into open-close index pairs. ###
+
   local s=$* i open=() pairs=()
+
   for (( i=0; i <${#s}; ++i )); do
     if [[ ${s:i:1} = '(' ]]; then
       open=($i "${open[@]}")
@@ -72,51 +87,92 @@ pairs() {
   printf '%s\n' "${pairs[@]}"
 }
 
-#sorting and tabbing the function result
-pairs "$fold_result" | sed 's/ /\t/' > "$temp_dir/pairs_tab.txt"
-sort -n -k1,1 "$temp_dir/pairs_tab.txt" > "$temp_dir/pairs_sorted.txt"
+to_bed() {
 
-#Arranging the Halo chromossomes
-chroms=( "NC_002607.1" "NC_001869.1" "NC_002608.1" )
+  ### Writes the result of the matched pairs into a bed file ###
 
-#Writing the bed file
-fasta_first_line=$(head -n 1 "$temp_dir/Hsalonliner.fa")
+  local fold_result="$1"
 
-for i in "${chroms[@]}"; do
-  if echo "$fasta_first_line" | grep -q "$i"; then
-    while IFS=$'\t' read -r start end; do
-      echo -e "$i\t$start\t$end" >> "$temp_dir/chrom_added.txt"
-    done < "$temp_dir/pairs_sorted.txt"
-    mv "$temp_dir/chrom_added.txt" "$temp_dir/pairs_sorted.txt"
-  fi
+  pairs "$fold_result" | sed 's/ /\t/' > "$temp_dir/pairs_tab.txt"
+  sort -n -k1,1 "$temp_dir/pairs_tab.txt" > "$temp_dir/pairs_sorted.txt"
+
+  chroms=( "NC_002607.1" "NC_001869.1" "NC_002608.1" )
+
+  fasta_first_line=$(head -n 1 "$temp_dir/Hsalonliner.fa")
+
+  for i in "${chroms[@]}"; do
+    if echo "$fasta_first_line" | grep -q "$i"; then
+      while IFS=$'\t' read -r start end; do
+        echo -e "$i\t$start\t$end" >> "$temp_dir/chrom_added.txt"
+      done < "$temp_dir/pairs_sorted.txt"
+      mv "$temp_dir/chrom_added.txt" "$temp_dir/pairs_sorted.txt"
+    fi
+  done
+       
+  header="track graphType=arc"
+  echo "$header" > "$temp_dir/header.txt"
+  cat "$temp_dir/pairs_sorted.txt" >> "$temp_dir/header.txt"
+  mv "$temp_dir/header.txt" pairs_sorted.bed
+}
+
+start_igv() {
+
+### Start igv with the files passed as parameters ###
+
+local input="$1"
+
+igv "$input"
+}
+
+
+
+##################################################################################################
+##################################################################################################
+####                                      MAIN PROGRAM                                        ####
+##################################################################################################
+##################################################################################################
+
+
+echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢠⣶⣶⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠟⠛⢿⣶⡄⠀⢀⣀⣤⣤⣦⣤⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢠⣿⠋⠀⠀⠈⠙⠻⢿⣶⣶⣶⣶⣶⣶⣶⣿⠟⠀⠀⠀⠀⠹⣿⡿⠟⠋⠉⠁⠈⢻⣷⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣼⡧⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⣾⡏⠀⠀⢠⣾⢶⣶⣽⣷⣄⡀⠀⠀⠀⠈⣿⡆⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⢸⣧⣾⠟⠉⠉⠙⢿⣿⠿⠿⠿⣿⣇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢸⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣷⣄⣀⣠⣼⣿⠀⠀⠀⠀⣸⣿⣦⡀⠀⠈⣿⡄⠀⠀⠀
+⠀⠀⠀⠀⠀⢠⣾⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠻⣷⣤⣤⣶⣿⣧⣿⠃⠀⣰⣿⠁⠀⠀⠀
+⠀⠀⠀⠀⠀⣾⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠹⣿⣀⠀⠀⣀⣴⣿⣧⠀⠀⠀⠀
+⠀⠀⠀⠀⢸⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⠿⠿⠛⠉⢸⣿⠀⠀⠀⠀
+⢀⣠⣤⣤⣼⣿⣤⣄⠀⠀⠀⡶⠟⠻⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣶⡄⠀⠀⠀⠀⢀⣀⣿⣄⣀⠀⠀
+⠀⠉⠉⠉⢹⣿⣩⣿⠿⠿⣶⡄⠀⠀⠀⠀⠀⠀⠀⢀⣤⠶⣤⡀⠀⠀⠀⠀⠀⠿⡿⠃⠀⠀⠀⠘⠛⠛⣿⠋⠉⠙⠃
+⠀⠀⠀⣤⣼⣿⣿⡇⠀⠀⠸⣿⠀⠀⠀⠀⠀⠀⠀⠘⠿⣤⡼⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣼⣿⣀⠀⠀⠀
+⠀⠀⣾⡏⠀⠈⠙⢧⠀⠀⠀⢿⣧⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠟⠙⠛⠓⠀
+⠀⠀⠹⣷⡀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠻⣷⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣶⣿⣯⡀⠀⠀⠀⠀
+⠀⠀⠀⠈⠻⣷⣄⠀⠀⠀⢀⣴⠿⠿⠗⠈⢻⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⠟⠋⠉⠛⠷⠄⠀⠀
+⠀⠀⠀⠀⠀⢸⡏⠀⠀⠀⢿⣇⠀⢀⣠⡄⢘⣿⣶⣶⣤⣤⣤⣤⣀⣤⣤⣤⣤⣶⣶⡿⠿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠘⣿⡄⠀⠀⠈⠛⠛⠛⠋⠁⣼⡟⠈⠻⣿⣿⣿⣿⡿⠛⠛⢿⣿⣿⣿⣡⣾⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠙⢿⣦⣄⣀⣀⣀⣀⣴⣾⣿⡁⠀⠀⠀⡉⣉⠁⠀⠀⣠⣾⠟⠉⠉⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠛⠛⠛⠉⠀⠹⣿⣶⣤⣤⣷⣿⣧⣴⣾⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠻⢦⣭⡽⣯⣡⡴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+
+
+template="Hsalinarum.fa"
+
+while getopts "hf:r:" opt; do
+  case $opt in
+    h)
+      help; exit;;
+    r)
+      sequence_salt="$OPTARG"
+      IFS=' ' read -ra r_values <<< "$sequence_salt"
+      sequence="${r_values[0]}"
+      salt="${r_values[1]}"
+      fold_result= rna_fold "$sequence" "$salt"
+      f_file= one_liner "$template"
+      input_coord "$sequence" "$template"
+      to_bed "$fold_result"
+      ;;
+    /?)
+      echo "invalid option"
+      exit;;
+  esac
 done
-        
-header="track graphType=arc"
-echo "$header" > "$temp_dir/header.txt"
-cat "$temp_dir/pairs_sorted.txt" >> "$temp_dir/header.txt"
-mv "$temp_dir/header.txt" pairs_sorted.bed
-
-#Writing the xml file to save a session
-genome_path="~/Halokit_IGV/Hsalinarum.fa"
-
-if echo "$fasta_first_line" | grep -q "NC_002607.1"; then
-    locus="NC_002607.1:0-2014239"
-fi
-if echo "$fasta_first_line" | grep -q "NC_001869.1"; then
-    locus="NC_001869.1:0-191346"
-fi
-if echo "$fasta_first_line" | grep -q "NC_002608.1"; then
-    locus="NC_002608.1:0-365425"
-fi
-
-path="~/Halokit_IGV/pairs_sorted.bed"
-
-igv pairs_sorted.bed
-
-
-    
-    
-
-
-
-
